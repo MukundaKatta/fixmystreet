@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.backends._legacy:_Backend"
+
+[project]
+name = "fixmystreet"
+version = "0.1.0"
+description = "AI Infrastructure Reporter - classify, prioritize, and track municipal infrastructure issues"
+authors = [
+    { name = "Mukunda Katta" },
+]
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = [
+    "pydantic>=2.0",
+    "click>=8.0",
+    "rich>=13.0",
+    "numpy>=1.24",
+]
+
+[project.scripts]
+fixmystreet = "fixmystreet.cli:cli"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
