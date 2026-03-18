@@ -1,84 +1,43 @@
-# FIXMYSTREET
+# fixmystreet
 
-AI Infrastructure Reporter - an intelligent system for classifying, prioritizing, and tracking municipal infrastructure issues.
+**FixMyStreet — AI Infrastructure Reporter. Report potholes, broken lights, and infrastructure issues with AI classification.**
 
-## Features
+![Build](https://img.shields.io/badge/build-passing-brightgreen) ![License](https://img.shields.io/badge/license-proprietary-red)
 
-- **Issue Classification**: Automatically categorize reports into 8 infrastructure issue types (pothole, broken light, graffiti, damaged sign, flooding, sidewalk crack, fallen tree, illegal dumping)
-- **Priority Scoring**: Score reports based on severity, location risk, and historical frequency
-- **Lifecycle Tracking**: Manage reports through their full lifecycle (reported -> acknowledged -> in_progress -> resolved)
-- **Hotspot Detection**: Identify geographic areas with high report density
-- **Trend Analysis**: Track issue patterns over time to detect emerging problems
-- **Response Time Analysis**: Measure and evaluate city response performance
-- **Report Generation**: Produce comprehensive infrastructure health reports
-- **Data Simulation**: Generate realistic sample data for testing and demos
-
-## Installation
-
+## Install
 ```bash
-pip install -e .
+pip install -e ".[dev]"
 ```
 
-## Usage
-
-### CLI
-
-```bash
-# Generate sample reports
-fixmystreet simulate --count 100
-
-# Classify an issue from a description
-fixmystreet classify "There's a large hole in the road on Main Street"
-
-# Analyze hotspots in a dataset
-fixmystreet analyze hotspots --radius 0.5
-
-# Track report status
-fixmystreet track --report-id RPT-001 --status in_progress
-
-# Generate a full infrastructure report
-fixmystreet report --days 30
-```
-
-### Python API
-
+## Quick Start
 ```python
-from fixmystreet.models import Report, Location
-from fixmystreet.reporter.classifier import IssueClassifier
-from fixmystreet.reporter.priority import PriorityScorer
-
-classifier = IssueClassifier()
-category = classifier.classify("Large pothole on Oak Avenue causing flat tires")
-
-scorer = PriorityScorer()
-priority = scorer.score(report)
+from src.core import Fixmystreet
+ instance = Fixmystreet()
+r = instance.process(input="test")
 ```
 
-## Project Structure
-
-```
-src/fixmystreet/
-    cli.py              # Click-based CLI interface
-    models.py           # Pydantic data models
-    simulator.py        # Sample data generator
-    report.py           # Report generation
-    reporter/
-        classifier.py   # Issue classification
-        priority.py     # Priority scoring
-        tracker.py      # Report lifecycle management
-    analyzer/
-        hotspots.py     # Geographic hotspot detection
-        trends.py       # Temporal trend analysis
-        response.py     # Response time analytics
+## CLI
+```bash
+python -m src status
+python -m src run --input "data"
 ```
 
-## Dependencies
+## API
+| Method | Description |
+|--------|-------------|
+| `process()` | Process |
+| `analyze()` | Analyze |
+| `transform()` | Transform |
+| `validate()` | Validate |
+| `export()` | Export |
+| `get_stats()` | Get stats |
+| `get_stats()` | Get stats |
+| `reset()` | Reset |
 
-- pydantic - Data validation and models
-- click - CLI framework
-- rich - Terminal formatting
-- numpy - Numerical computations
+## Test
+```bash
+pytest tests/ -v
+```
 
 ## License
-
-MIT
+(c) 2026 Officethree Technologies. All Rights Reserved.
